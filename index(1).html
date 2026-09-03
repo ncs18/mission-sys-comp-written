@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mission Systems Written Comp — Review &amp; Problem Set</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+  :root{
+    --paper:#EDF1EF;
+    --panel:#FFFFFF;
+    --ink:#131F1C;
+    --muted:#576763;
+    --rule:#C6D2CE;
+    --scope:#0F5C4A;
+    --amber:#9C4E15;
+    --answer-bg:#F3F6F4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0D1412;
+      --panel:#141F1C;
+      --ink:#E2EAE7;
+      --muted:#93A5A0;
+      --rule:#2A3A36;
+      --scope:#6FC4AC;
+      --amber:#E0A868;
+      --answer-bg:#101A18;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0D1412;
+    --panel:#141F1C;
+    --ink:#E2EAE7;
+    --muted:#93A5A0;
+    --rule:#2A3A36;
+    --scope:#6FC4AC;
+    --amber:#E0A868;
+    --answer-bg:#101A18;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:17px;
+    line-height:1.62;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* ---------- masthead ---------- */
+  header.mast{border-bottom:2px solid var(--ink);padding:44px 0 26px}
+  .kicker{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:.86rem;font-weight:600;color:var(--scope);
+    margin:0 0 10px;letter-spacing:.01em;
+  }
+  h1{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:700;font-size:clamp(2rem,5.2vw,3.1rem);
+    line-height:1.05;margin:0 0 14px;max-width:16ch;
+  }
+  .standfirst{max-width:62ch;margin:0 0 18px;color:var(--muted);font-size:1.02rem}
+  .mast-meta{
+    font-family:"Archivo",system-ui,sans-serif;font-size:.82rem;
+    color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 22px;
+  }
+
+  /* ---------- layout ---------- */
+  .cols{display:grid;grid-template-columns:1fr;gap:0}
+  @media(min-width:960px){
+    .cols{grid-template-columns:222px minmax(0,1fr);gap:52px;align-items:start}
+    nav.rail{position:sticky;top:0;max-height:100vh;overflow-y:auto;padding:34px 0 40px}
+  }
+  nav.rail{padding:26px 0 4px}
+  nav.rail ol{list-style:none;margin:0;padding:0}
+  nav.rail li{margin:0 0 2px}
+  nav.rail a{
+    display:flex;gap:10px;text-decoration:none;color:var(--ink);
+    font-family:"Archivo",system-ui,sans-serif;font-size:.86rem;
+    padding:6px 8px 6px 0;border-left:2px solid transparent;padding-left:10px;
+  }
+  nav.rail a:hover{border-left-color:var(--scope);color:var(--scope)}
+  nav.rail a .n{color:var(--muted);min-width:1.3em}
+  .railhead{
+    font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:.76rem;
+    color:var(--muted);margin:0 0 10px;padding-left:10px;
+  }
+  .toolbar{padding-left:10px;margin-top:22px;display:flex;flex-direction:column;gap:8px}
+
+  main{padding:26px 0 90px;min-width:0}
+
+  /* ---------- modules ---------- */
+  section.mod{padding:38px 0 10px;border-top:1px solid var(--rule)}
+  section.mod:first-of-type{border-top:none;padding-top:14px}
+  .modnum{
+    font-family:"Archivo",system-ui,sans-serif;font-weight:600;
+    font-size:.8rem;color:var(--scope);margin:0 0 6px;
+  }
+  h2{
+    font-family:"Archivo",system-ui,sans-serif;font-weight:700;
+    font-size:clamp(1.45rem,3.4vw,2rem);line-height:1.14;margin:0 0 18px;max-width:22ch;
+  }
+  h3{
+    font-family:"Archivo",system-ui,sans-serif;font-weight:600;
+    font-size:1.02rem;margin:30px 0 10px;
+  }
+  p,li{max-width:70ch}
+  main ul{padding-left:1.15em}
+  main li{margin:0 0 7px}
+  strong{font-weight:600}
+
+  .lede{font-size:1.04rem}
+
+  /* concept block */
+  .concept{
+    background:var(--panel);border:1px solid var(--rule);
+    padding:20px 22px;margin:18px 0 6px;
+  }
+  .concept h4{
+    font-family:"Archivo",system-ui,sans-serif;font-size:.92rem;font-weight:600;
+    margin:0 0 10px;
+  }
+  .concept p:last-child,.concept ul:last-child{margin-bottom:0}
+
+  /* equations */
+  .eq{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.93rem;background:var(--answer-bg);border-left:2px solid var(--scope);
+    padding:10px 14px;margin:12px 0;overflow-x:auto;white-space:pre-wrap;
+  }
+  code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em}
+
+  .cardnote{
+    font-family:"Archivo",system-ui,sans-serif;font-size:.8rem;
+    color:var(--muted);margin:10px 0 0;
+  }
+
+  /* rendered math */
+  .math{
+    background:var(--answer-bg);border-left:2px solid var(--scope);
+    padding:14px 16px;margin:14px 0;overflow-x:auto;overflow-y:hidden;
+  }
+  .math .katex-display{margin:0;text-align:left}
+  .math .katex-display > .katex{text-align:left;white-space:normal}
+  .math .katex{font-size:1.04em;color:var(--ink)}
+  .katex .fbox{border-color:var(--amber)}
+  .katex .boxpad{color:var(--amber)}
+  .ans .math{background:transparent;border-left-color:var(--amber);padding-left:14px}
+  p .katex{font-size:1em}
+  /* hide the raw source only while KaTeX is actually on its way */
+  .js .math:not(.rendered){visibility:hidden}
+
+  /* problems */
+  .probs{margin-top:26px}
+  .prob{
+    border:1px solid var(--rule);background:var(--panel);
+    margin:0 0 12px;
+  }
+  .prob > .q{padding:16px 18px 14px}
+  .qid{
+    font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:.78rem;
+    color:var(--amber);margin:0 0 6px;
+  }
+  .prob p{margin:0 0 8px}
+  .prob p:last-child{margin-bottom:0}
+  details{border-top:1px dashed var(--rule)}
+  summary{
+    cursor:pointer;padding:11px 18px;list-style:none;
+    font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:.84rem;
+    color:var(--scope);
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";display:inline-block;transition:transform .15s ease}
+  details[open] summary::before{content:"▾ "}
+  @media(prefers-reduced-motion:reduce){summary::before{transition:none}}
+  summary:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+  .ans{padding:2px 18px 18px;background:var(--answer-bg)}
+  .ans p{margin:0 0 9px}
+  .ans p:last-child{margin-bottom:0}
+  .val{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
+    color:var(--amber);
+  }
+
+  /* buttons */
+  button{
+    font-family:"Archivo",system-ui,sans-serif;font-size:.8rem;font-weight:600;
+    background:transparent;color:var(--ink);border:1px solid var(--rule);
+    padding:7px 12px;cursor:pointer;text-align:left;
+  }
+  button:hover{border-color:var(--scope);color:var(--scope)}
+  button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+  /* tables */
+  .tablewrap{overflow-x:auto;margin:16px 0}
+  table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:.82rem}
+  td.num{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+  .twocol{columns:2;column-gap:34px}
+  .twocol li{break-inside:avoid}
+  @media(max-width:640px){.twocol{columns:1}}
+
+  footer{border-top:2px solid var(--ink);padding:26px 0 60px;color:var(--muted);font-size:.9rem}
+  footer p{max-width:70ch}
+
+  a{color:var(--scope)}
+
+  @media print{
+    nav.rail,.toolbar{display:none}
+    body{background:#fff;font-size:11pt}
+    details{border-top:1px solid #ccc}
+    details[open] summary{color:#000}
+    .ans{background:#f4f4f4}
+    section.mod{page-break-inside:auto}
+    .prob{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">USAF Test Pilot School</p>
+    <h1>Mission Systems Written Comp</h1>
+    <p class="standfirst">A review built to the scope of the Written Comp Review deck — the eight modules, the concepts called out in each, and worked problems you can check yourself. Nothing outside the deck.</p>
+    <div class="mast-meta">
+      <span>8 modules</span>
+      <span>42 problems with answers</span>
+      <span>Paired with the June 2024 equation card</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap cols">
+
+  <nav class="rail" aria-label="Modules">
+    <p class="railhead">Contents</p>
+    <ol>
+      <li><a href="#m1"><span class="n">1</span> Foundational Principles</a></li>
+      <li><a href="#m2"><span class="n">2</span> Radar Systems</a></li>
+      <li><a href="#m3"><span class="n">3</span> EO / IR Systems</a></li>
+      <li><a href="#m4"><span class="n">4</span> Navigation &amp; Guidance</a></li>
+      <li><a href="#m5"><span class="n">5</span> Electronic Warfare</a></li>
+      <li><a href="#m6"><span class="n">6</span> Comms &amp; Datalinks</a></li>
+      <li><a href="#m7"><span class="n">7</span> Munitions</a></li>
+      <li><a href="#m8"><span class="n">8</span> Supporting Concepts</a></li>
+      <li><a href="#ref"><span class="n">—</span> Reference</a></li>
+    </ol>
+    <div class="toolbar">
+      <button id="toggleAll" type="button">Show all answers</button>
+      <button id="themeBtn" type="button">Switch to dark</button>
+    </div>
+  </nav>
+
+  <main>
+
+  <p class="lede">Work each problem before opening the answer. Every number below can be reached with the equation card plus the constants on the last review slide — if you find yourself needing something that isn't on either, you've wandered outside the tested scope.</p>
+
+  <!-- ===================== MODULE 1 ===================== -->
+  <section class="mod" id="m1">
+    <p class="modnum">Module 1</p>
+    <h2>Foundational Principles</h2>
+
+    <div class="concept">
+      <h4>The electromagnetic spectrum</h4>
+      <p>The EM spectrum is the full range of electromagnetic radiation, differentiated by wavelength (λ) and frequency (<em>f</em>). The two are inversely proportional through the speed of light.</p>
+      <div class="math">\[c = f\lambda \qquad \lambda = \frac{c}{f} \qquad T = \frac{1}{f} \qquad E = hf\]</div>
+      <p>Long wavelength ↔ low frequency. Short wavelength ↔ high frequency.</p>
+    </div>
+
+    <h3>Relative position on the spectrum</h3>
+    <p>Longest wavelength to shortest:</p>
+    <div class="eq">Radio → Microwave → Infrared → Visible → Ultraviolet → X-ray → Gamma</div>
+    <p>Convention matters for how bands get named: IR, visible, UV, X-ray and gamma are normally described by <strong>wavelength</strong>; radio bands are normally described by <strong>frequency</strong>, which reverses the direction of the scale.</p>
+
+    <h3>What the equation card gives you</h3>
+    <ul>
+      <li>Radio band chart (ITU / IEEE / NATO letters) with frequency and wavelength boundaries.</li>
+      <li>IR sub-band chart (NIR, SWIR, MWIR, LWIR, FIR).</li>
+      <li>Atmospheric attenuation curve — water vapor and oxygen absorption vs. frequency.</li>
+      <li>Metric prefixes, Greek alphabet, dB definitions, and speed/distance conversion tables.</li>
+    </ul>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">1.1</p>
+          <p>An X-band radar operates at a center frequency of 10 GHz. What is its wavelength, and what is the period of one cycle?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\lambda = \frac{c}{f} = \frac{3\times10^{8}\ \mathrm{m/s}}{10\times10^{9}\ \mathrm{Hz}} = \boxed{0.03\ \mathrm{m} = 3\ \mathrm{cm}}\]</div><div class="math">\[T = \frac{1}{f} = \frac{1}{10\times10^{9}} = \boxed{1\times10^{-10}\ \mathrm{s} = 100\ \mathrm{ps}}\]</div>
+          <p>Worth committing to memory: X-band ≈ 10 GHz ≈ 3 cm. It anchors most of the radar and EW arithmetic on this exam.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">1.2</p>
+          <p>Rank these four emissions from longest wavelength to shortest: a visible-band targeting camera, a UHF datalink, a medical X-ray source, an LWIR sensor.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">UHF datalink → LWIR sensor → visible camera → X-ray</span></p>
+          <p>This is just the spectrum ordering with specific systems substituted in: Radio &gt; Infrared &gt; Visible &gt; X-ray.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">1.3</p>
+          <p>An IR missile seeker is tuned to jet exhaust emission near 4.0 µm. What frequency is that, and which IR sub-band is it in?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[f = \frac{c}{\lambda} = \frac{3\times10^{8}}{4.0\times10^{-6}} = \boxed{7.5\times10^{13}\ \mathrm{Hz} = 75\ \mathrm{THz}}\]</div>
+          <p>4.0 µm sits in the <span class="val">MWIR</span> band, inside the 3–5 µm atmospheric window.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">1.4</p>
+          <p>Compare the energy of one photon from the 10 GHz radar in 1.1 to one photon from the 4.0 µm seeker in 1.3. Roughly what is the ratio?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Using \(E = hf\) with \(h = 6.625\times10^{-34}\ \mathrm{J\cdot s}\):</p><div class="math">\[\begin{aligned}
+E_{\mathrm{radar}} &= 6.625\times10^{-34} \times 1\times10^{10} = \boxed{6.6\times10^{-24}\ \mathrm{J}}\\[5pt]
+E_{\mathrm{IR}} &= 6.625\times10^{-34} \times 7.5\times10^{13} = \boxed{5.0\times10^{-20}\ \mathrm{J}}
+\end{aligned}\]</div>
+          <p>Ratio ≈ <span class="val">7,500×</span>. Since E = hf and the frequencies differ by that same factor, the energy ratio is just the frequency ratio — an IR photon carries thousands of times the energy of an RF photon.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 2 ===================== -->
+  <section class="mod" id="m2">
+    <p class="modnum">Module 2</p>
+    <h2>Radar Systems</h2>
+
+    <div class="concept">
+      <h4>Antenna gain</h4>
+      <p>Gain measures how well an antenna focuses power, expressed relative to an isotropic radiator.</p>
+      <div class="math">\[G_{\mathrm{dBi}} = 10\log_{10}\!\left(G_{\mathrm{ratio}}\right) \qquad G_{\mathrm{ratio}} = 10^{\,G_{\mathrm{dBi}}/10}\]</div>
+    </div>
+
+    <div class="concept">
+      <h4>Radar cross section (σ)</h4>
+      <p>RCS measures how "big" a target looks to a radar. <strong>0 dBsm is not invisible</strong> — it is the RCS of a perfect 1 m² sphere.</p>
+      <div class="math">\[\sigma_{\mathrm{dBsm}} = 10\log_{10}\!\left(\frac{\sigma}{1\ \mathrm{m^2}}\right)\]</div>
+      <p>Detection range goes as the fourth root of RCS, because the two-way return falls off as 1/R⁴:</p>
+      <div class="math">\[R \propto \sigma^{1/4} \qquad \sigma_{\mathrm{new}} = \sigma_{\mathrm{old}}\left(\frac{R_{\mathrm{new}}}{R_{\mathrm{old}}}\right)^{\!4}\]</div>
+      <p>The equation card carries the same relationship in test form:</p>
+      <div class="math">\[\frac{R_{50,\mathrm{spec}}}{R_{50,\mathrm{test}}} = \left(\frac{\sigma_{\mathrm{spec}}}{\sigma_{\mathrm{test}}}\right)^{\!1/4}\]</div>
+    </div>
+
+    <div class="concept">
+      <h4>Signal-to-noise ratio</h4>
+      <p>SNR is the echo compared to the background noise. A <strong>negative SNR does not guarantee you are safe</strong> — modern radars integrate multiple pulses to pull weak signals out of the noise floor. Coherent integration of N pulses buys 10 log(N) dB of processing gain.</p>
+    </div>
+
+    <div class="concept">
+      <h4>RCS reduction</h4>
+      <p>Stealth design hierarchy, in order of effectiveness:</p>
+      <div class="eq">1. Shaping    2. Materials    3. Size</div>
+    </div>
+
+    <div class="concept">
+      <h4>Doppler and clutter</h4>
+      <p>Radars use Doppler shift to separate movers from stationary ground clutter. On a Doppler spectrum display, returns to the <strong>left</strong> of the main lobe carry a <strong>negative frequency shift</strong> and come from objects <strong>receding</strong> from the radar.</p>
+      <p>Sign convention from the equation card: range decreasing → negative Ṙ → positive closure → positive Δf.</p>
+      <div class="math">\[f_d = -\frac{2\dot{R}}{\lambda} = \frac{2V_R\cos\theta}{\lambda}\]</div>
+    </div>
+
+    <div class="concept">
+      <h4>SAR and beam spot size</h4>
+      <p>SAR synthesizes a long aperture from the platform's own motion. Synthetic beamwidth is inversely proportional to effective aperture length — smaller beamwidth means better cross-range resolution.</p>
+      <div class="math">\[\begin{aligned}
+\beta &\approx \frac{0.44\,\lambda}{L_{\mathrm{eff}}} \quad \text{(radians)}\\[4pt]
+\rho_{CR(\mathrm{SAR})} &= R\beta = \frac{0.44\,\lambda R}{L_{\mathrm{eff}}}
+\end{aligned}\]</div>
+      <p>Real-beam spot size uses the small-angle approximation:</p>
+      <div class="math">\[\text{beam width} = R \times \theta_{\mathrm{beam}} \qquad (\theta \text{ in radians})\]</div>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.1</p>
+          <p>A radar antenna has a directive gain ratio of 5,000. Express this in dBi. Separately, a different antenna is specified at 33 dBi — what is its gain ratio?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[G = 10\log_{10}(5000) = 10 \times 3.699 = \boxed{37.0\ \mathrm{dBi}}\]</div><div class="math">\[G_{\mathrm{ratio}} = 10^{33/10} = 10^{3.3} = \boxed{\approx 2000}\]</div>
+          <p>Check with the card's power-ratio table: 30 dB = 1000 and 3 dB = 2, so 33 dB = 1000 × 2 = 2000. Doing it by table is faster than by calculator.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.2</p>
+          <p>Express an RCS of 0.01 m² in dBsm. What RCS corresponds to +10 dBsm?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[10\log_{10}(0.01) = \boxed{-20\ \mathrm{dBsm}}\]</div><div class="math">\[+10\ \mathrm{dBsm} \;\longrightarrow\; \sigma = 10^{10/10} = \boxed{10\ \mathrm{m^2}}\]</div>
+          <p>Anchor point: 0 dBsm = 1 m². Everything else is ±10 dB per decade from there.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.3</p>
+          <p>A radar achieves R₅₀ = 40 nm against a 5 m² target. Assuming everything else is unchanged, what R₅₀ would you expect against a 1 m² target?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+R_{\mathrm{new}} &= R_{\mathrm{old}}\left(\frac{\sigma_{\mathrm{new}}}{\sigma_{\mathrm{old}}}\right)^{\!1/4} = 40\left(\tfrac{1}{5}\right)^{\!0.25}\\[5pt]
+\left(\tfrac{1}{5}\right)^{0.25} &= \frac{1}{5^{0.25}} = \frac{1}{1.495} = 0.669\\[5pt]
+R_{\mathrm{new}} &= 40 \times 0.669 = \boxed{\approx 26.7\ \mathrm{nm}}
+\end{aligned}\]</div>
+          <p>A 5× reduction in RCS bought only a 33% reduction in detection range. That fourth root is why RCS reduction is expensive.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.4</p>
+          <p>An aircraft is modified so that its detection range against a given radar drops from 60 nm to 30 nm. By what factor was its RCS reduced, and what is that in dB?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+\sigma_{\mathrm{new}} &= \sigma_{\mathrm{old}}\left(\frac{R_{\mathrm{new}}}{R_{\mathrm{old}}}\right)^{\!4} = \sigma_{\mathrm{old}}\left(\tfrac{30}{60}\right)^{\!4} = \sigma_{\mathrm{old}}(0.5)^4 = \boxed{\tfrac{1}{16}\,\sigma_{\mathrm{old}}}\\[5pt]
+\text{in dB:}\quad & 10\log_{10}\!\left(\tfrac{1}{16}\right) = \boxed{-12.0\ \mathrm{dB}}
+\end{aligned}\]</div>
+          <p>Equivalently, 40 log(0.5) = −12.04 dB. Halving detection range costs 12 dB of RCS — the two-way link means every factor of 2 in range is 12 dB, not 6.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.5</p>
+          <p>A single-pulse return comes in at −8 dB SNR, below the detection threshold. The radar coherently integrates 100 pulses on the target. What is the resulting SNR, and what does that tell you about assuming you're safe at negative SNR?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+\text{processing gain} &= 10\log_{10}(N) = 10\log_{10}(100) = \boxed{+20\ \mathrm{dB}}\\[5pt]
+\mathrm{SNR} &= -8 + 20 = \boxed{+12\ \mathrm{dB}}
+\end{aligned}\]</div><p>Comfortably detectable.</p>
+          <p>A negative single-pulse SNR is not safety. The card's SNR forms show it directly: SNR ∝ N P τ, so more pulses on target (or longer integration time t_int) buys detection.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.6</p>
+          <p>An X-band SAR (10 GHz) flies a synthetic aperture of 300 m and images a target area at 20 km slant range. What is the synthetic beamwidth, and what is the cross-range resolution?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>At 10 GHz, \(\lambda = 0.03\ \mathrm{m}\).</p><div class="math">\[\begin{aligned}
+\beta &= \frac{0.44\,\lambda}{L_{\mathrm{eff}}} = \frac{0.44 \times 0.03}{300} = \boxed{4.4\times10^{-5}\ \mathrm{rad}\ (44\ \mu\mathrm{rad})}\\[5pt]
+\rho_{CR} &= R\beta = 20{,}000 \times 4.4\times10^{-5} = \boxed{0.88\ \mathrm{m}}
+\end{aligned}\]</div>
+          <p>For contrast, a real 3° beam at that same range gives about 1,050 m of cross-range resolution. That is the whole reason SAR exists.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.7</p>
+          <p>A radar has a 3° beamwidth. How wide is its beam footprint at 15 nm?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+\theta &= 3^\circ \times \tfrac{\pi}{180} = 0.0524\ \mathrm{rad}\\[5pt]
+R &= 15\ \mathrm{nm} \times 1852\ \tfrac{\mathrm{m}}{\mathrm{nm}} = 27{,}780\ \mathrm{m}\\[5pt]
+\text{beam width} &= R\theta = 27{,}780 \times 0.0524 = \boxed{\approx 1455\ \mathrm{m}}
+\end{aligned}\]</div>
+          <p>Rule-of-thumb check from the card: 1° ≈ 1 nm at 60 nm, so 3° at 15 nm ≈ 0.75 nm ≈ 1,390 m. Close enough to confirm you didn't drop a factor.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.8</p>
+          <p>You are looking at a Doppler spectrum display. A return appears to the left of the main lobe clutter, at a negative frequency shift. What is that object doing relative to your radar? What is the sign of its range rate?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Negative Doppler shift → the object is <span class="val">receding (opening)</span> from the radar.</p>
+          <p>Range is increasing, so <span class="val">Ṙ is positive</span> and closure velocity is negative.</p>
+          <p>The card's convention: R getting bigger = positive Ṙ = negative closure = negative Δf. Get comfortable running this both directions — they may give you the sign and ask for the geometry.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">2.9</p>
+          <p>A program office wants to reduce an airframe's RCS and asks you to rank three proposals by expected effectiveness: applying radar-absorbent material, reshaping the inlet and leading edges, and shrinking the airframe by 10%. What order do you give them, and why?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">1. Shaping (reshape inlet and leading edges) — 2. Materials (RAM) — 3. Size</span></p>
+          <p>Shaping dominates because it redirects energy away from the receiver entirely rather than absorbing a fraction of it. Materials help second. Size matters least, and note from problem 2.3 that even a large geometric reduction moves detection range very little because of the fourth-root relationship.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 3 ===================== -->
+  <section class="mod" id="m3">
+    <p class="modnum">Module 3</p>
+    <h2>Electro-Optic &amp; Infrared Systems</h2>
+
+    <div class="concept">
+      <h4>Imaging fundamentals</h4>
+      <p>EO/IR systems form images by detecting photons.</p>
+      <ul>
+        <li><strong>Focal length (f):</strong> the distance from the lens to the sensor.</li>
+        <li><strong>Depth of field:</strong> the zone of acceptable sharpness in front of and behind the focused subject.</li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <h4>Resolution: IFOV and pixel size</h4>
+      <p>An imaging sensor is a grid of pixels. <strong>IFOV</strong> is the angle covered by a single pixel and sets the sensor's resolution. Detector pixel size X_d relates to focal length and IFOV:</p>
+      <div class="math">\[X_d \approx f\tan(\mathrm{IFOV}) \quad\longrightarrow\quad X_d \approx f\cdot\mathrm{IFOV_{rad}} \quad \text{(small angles)}\]</div>
+      <p>And IFOV can be found from the ground footprint of one pixel:</p>
+      <div class="math">\[\mathrm{IFOV_{rad}} \approx \frac{\text{ground footprint of one pixel}}{\text{altitude}}\]</div>
+      <p>Full-array field of view, from the card:</p>
+      <div class="math">\[\mathrm{FOV} = 2\tan^{-1}\!\left(\frac{W}{2f}\right) \qquad \mathrm{IFOV} = 2\tan^{-1}\!\left(\frac{X_d}{2f}\right)\]</div>
+    </div>
+
+    <div class="concept">
+      <h4>Card equations that support this module</h4>
+      <div class="math">\[\begin{aligned}
+\text{Lens maker:}\quad & \frac{1}{d_0} + \frac{1}{d_1} = \frac{1}{f}\\[5pt]
+\text{Hyperfocal:}\quad & H = \frac{f^2}{Nc} + f, \qquad N = \frac{f}{D}\\[5pt]
+\text{Small angle:}\quad & 1\ \mathrm{mr} \approx 1\ \mathrm{ft}\ \text{at}\ 1000\ \mathrm{ft}, \qquad 1^\circ \approx 1\ \mathrm{NM}\ \text{at}\ 60\ \mathrm{NM}
+\end{aligned}\]</div>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">3.1</p>
+          <p>A targeting pod flying at 10,000 ft AGL resolves a ground footprint of 0.5 m per pixel. What is the IFOV in radians and in milliradians?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+h &= 10{,}000\ \mathrm{ft} \times 0.3048 = 3048\ \mathrm{m}\\[5pt]
+\mathrm{IFOV} &\approx \frac{\text{footprint}}{h} = \frac{0.5}{3048} = \boxed{1.64\times10^{-4}\ \mathrm{rad} = 0.164\ \mathrm{mrad}}
+\end{aligned}\]</div>
+          <p>Sanity check with the card's rule of thumb: 1 mr ≈ 1 ft at 1,000 ft, so 0.164 mrad at 10,000 ft ≈ 1.64 ft ≈ 0.5 m. ✓</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">3.2</p>
+          <p>That same sensor has a 100 mm focal length. What is the physical size of one detector pixel?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[X_d \approx f\cdot\mathrm{IFOV} = 0.100 \times 1.64\times10^{-4} = 1.64\times10^{-5}\ \mathrm{m} = \boxed{16.4\ \mu\mathrm{m}}\]</div>
+          <p>Using tan(IFOV) instead of IFOV changes nothing at this angle — the small-angle simplification is good to many decimal places here.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">3.3</p>
+          <p>The detector is a 640-pixel-wide array of those 16.4 µm pixels, behind the same 100 mm lens. What is the horizontal field of view in degrees?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+W &= 640 \times 16.4\ \mu\mathrm{m} = 10{,}496\ \mu\mathrm{m} = 10.50\ \mathrm{mm}\\[5pt]
+\mathrm{FOV} &= 2\tan^{-1}\!\left(\frac{W}{2f}\right) = 2\tan^{-1}\!\left(\frac{10.50}{200}\right) = 2 \times 3.00^\circ = \boxed{\approx 6.0^\circ}
+\end{aligned}\]</div>
+          <p>Cross-check: 640 pixels × 0.164 mrad = 105 mrad = 6.0°. ✓ FOV is just IFOV times pixel count.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">3.4</p>
+          <p>Same 100 mm lens, set to f/4, with a circle of confusion of 0.02 mm. What is the hyperfocal distance, and what happens to depth of field if you stop down to f/8?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+H_{f/4} &= \frac{f^2}{Nc} + f = \frac{100^2}{4 \times 0.02} + 100 = 125{,}100\ \mathrm{mm} = \boxed{\approx 125\ \mathrm{m}}\\[5pt]
+H_{f/8} &= \frac{100^2}{8 \times 0.02} + 100 = 62{,}600\ \mathrm{mm} = \boxed{\approx 62.6\ \mathrm{m}}
+\end{aligned}\]</div>
+          <p>Stopping down halves the hyperfocal distance and <strong>increases</strong> depth of field — focus at the hyperfocal distance and everything from half that distance to infinity is acceptably sharp. The tradeoff is that you cut the light reaching the detector.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">3.5</p>
+          <p>Using the lens maker equation, where does the image of an object at 500 m form behind that 100 mm lens? What does the result tell you about focusing on distant targets?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+\frac{1}{d_0} + \frac{1}{d_1} = \frac{1}{f} \;\longrightarrow\; \frac{1}{d_1} &= \frac{1}{100} - \frac{1}{500{,}000}\\[5pt]
+&= 0.01 - 0.000002 = 0.009998\\[5pt]
+d_1 &= \boxed{100.02\ \mathrm{mm}}
+\end{aligned}\]</div>
+          <p>The image forms essentially at the focal length. For any target far away compared to f, the sensor sits at f and the lens is effectively focused at infinity — which is why airborne EO systems care far more about IFOV and FOV than about focus distance.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 4 ===================== -->
+  <section class="mod" id="m4">
+    <p class="modnum">Module 4</p>
+    <h2>Navigation &amp; Guidance</h2>
+
+    <div class="concept">
+      <h4>GPS/INS integration</h4>
+      <p>A <strong>Kalman filter</strong> blends the two systems. GPS supplies accurate, periodic updates that correct INS drift; the INS supplies continuous data between GPS updates.</p>
+      <p>Test implication from the deck: <strong>when GPS is available and constantly updating the INS, long-duration tests are not required</strong> to characterize system performance. The drift never gets a chance to accumulate.</p>
+    </div>
+
+    <div class="concept">
+      <h4>Degraded environments</h4>
+      <ul>
+        <li><strong>GPS-denied (jammed):</strong> the system must rely solely on the INS.</li>
+        <li><strong>GPS-spoofed:</strong> more dangerous than jamming. A resilient system needs internal filters that compare GPS against other sources to identify and reject corrupted data.</li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <h4>Kalman filter terms on the equation card</h4>
+      <div class="tablewrap">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td class="num">x</td><td>State — the thing you want to estimate</td></tr>
+        <tr><td class="num">z</td><td>Measurement — what is directly observable</td></tr>
+        <tr><td class="num">Q</td><td>Process noise — unmodeled error on a single step</td></tr>
+        <tr><td class="num">R</td><td>Measurement noise — error on the average sensor measurement</td></tr>
+        <tr><td class="num">P</td><td>Covariance — how much you trust the current estimate</td></tr>
+        <tr><td class="num">r</td><td>Residual — how far the estimate is off the measurement</td></tr>
+        <tr><td class="num">K</td><td>Kalman gain — how much you trust the measurement</td></tr>
+        <tr><td class="num">H</td><td>Observation matrix — maps state to measurement space</td></tr>
+        <tr><td class="num">Φ</td><td>Propagation matrix — moves state forward one timestep</td></tr>
+      </table>
+      </div>
+      <p class="cardnote">Superscript − is before a measurement update, + is after. A hat means estimated; no hat means truth, which you never actually know.</p>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">4.1</p>
+          <p>A test team proposes an 8-hour sortie to characterize navigation drift on an aircraft whose INS is continuously updated by a healthy GPS. Is the long sortie necessary? Justify your answer.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">No.</span> With GPS available and constantly updating the INS through the Kalman filter, INS drift is being corrected on every update cycle. Errors are bounded by GPS accuracy rather than allowed to grow with time, so a long-duration run adds cost without adding information.</p>
+          <p>The long sortie becomes necessary when you deliberately remove the GPS updates — that is when you are characterizing the free-running inertial solution.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">4.2</p>
+          <p>Contrast GPS jamming with GPS spoofing. Which presents the greater danger to a navigation system, and what design feature mitigates it?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><strong>Jamming</strong> denies the GPS signal. The system knows it has lost GPS and falls back on the INS alone — degraded, but honest.</p>
+          <p><strong>Spoofing</strong> feeds the receiver counterfeit signals. The system believes it has a valid fix while being walked off position. <span class="val">Spoofing is the greater danger</span> precisely because the failure is silent.</p>
+          <p>Mitigation: internal filters that compare the GPS solution against other sources — INS, other sensors — so inconsistent data can be identified and rejected rather than accepted.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">4.3</p>
+          <p>In a GPS/INS Kalman filter, which term captures "how much do I trust this GPS measurement versus my current estimate"? What happens to the position solution if that term is driven toward zero?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>The <span class="val">Kalman gain, K</span>. It weights the residual r = z − Hx̂⁻ when forming the updated estimate x̂⁺ = x̂⁻ + K r.</p>
+          <p>Drive K toward zero and the filter stops accepting measurements — the update contributes nothing and the solution becomes pure INS propagation, free to drift. Functionally identical to a GPS-denied condition.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">4.4</p>
+          <p>Match each Kalman term to its role: (a) unmodeled error introduced on a single propagation step, (b) error on the average sensor measurement, (c) how much you trust the current estimate.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>(a) <span class="val">Q</span> — process noise</p>
+          <p>(b) <span class="val">R</span> — measurement noise</p>
+          <p>(c) <span class="val">P</span> — covariance of the state estimate</p>
+          <p>Q and R are the two knobs you tune; P is the output that tells you how well the tuning is working.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 5 ===================== -->
+  <section class="mod" id="m5">
+    <p class="modnum">Module 5</p>
+    <h2>Electronic Warfare</h2>
+
+    <div class="concept">
+      <h4>The three divisions of EW</h4>
+      <p>EW is the battle for control of the electromagnetic spectrum, divided into:</p>
+      <ul>
+        <li><strong>Electronic Attack (EA)</strong> — using EM energy to attack: jamming, chaff, decoys, directed energy.</li>
+        <li><strong>Electronic Protection (EP)</strong> — protecting our own use of the spectrum. <strong>Spread spectrum is a form of EP.</strong></li>
+        <li><strong>Electronic Support (ES)</strong> — sensing and characterizing the spectrum for situational awareness, targeting, and intelligence.</li>
+      </ul>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">5.1</p>
+          <p>Classify each of the following as EA, EP, or ES:</p>
+          <ul>
+            <li>A radar warning receiver detecting and identifying a threat emitter</li>
+            <li>A datalink using frequency-hopping spread spectrum</li>
+            <li>Dispensing chaff to break a radar track</li>
+            <li>Spot noise jamming an acquisition radar</li>
+            <li>An ELINT aircraft collecting emitter parameters</li>
+          </ul>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>RWR detecting a threat emitter → <span class="val">ES</span></p>
+          <p>Frequency-hopping spread spectrum datalink → <span class="val">EP</span></p>
+          <p>Chaff → <span class="val">EA</span></p>
+          <p>Spot noise jamming → <span class="val">EA</span></p>
+          <p>ELINT collection → <span class="val">ES</span></p>
+          <p>The dividing question: am I attacking their use of the spectrum (EA), protecting mine (EP), or listening to learn (ES)?</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">5.2</p>
+          <p>Why is spread spectrum categorized as Electronic Protection rather than Electronic Attack, even though it changes how the transmitter radiates?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Because its purpose is <span class="val">to protect our own link, not to degrade theirs</span>. Spreading the signal across a wide bandwidth makes it harder to detect, intercept, and jam — it preserves friendly use of the spectrum in a contested environment.</p>
+          <p>The classification follows intent and effect, not whether a transmitter is involved. EA degrades the adversary; EP hardens us.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">5.3</p>
+          <p>An aircraft carries a system that detects incoming radar illumination, identifies the emitter type, and automatically commands a countermeasure dispense. Which EW divisions are represented, and by which function?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Detection and identification of the emitter → <span class="val">ES</span></p>
+          <p>The countermeasure dispense itself → <span class="val">EA</span></p>
+          <p>A single integrated system can span divisions. On the exam, classify by <em>function</em>, not by box — the same LRU can be doing ES on one line and EA on the next.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 6 ===================== -->
+  <section class="mod" id="m6">
+    <p class="modnum">Module 6</p>
+    <h2>Communications &amp; Datalinks</h2>
+
+    <div class="concept">
+      <h4>Polarization</h4>
+      <p>If the receive antenna's polarization is mismatched to the incoming wave, you take a loss. Nominal values from the equation card:</p>
+      <div class="tablewrap">
+      <table>
+        <tr><th>Mismatch</th><th>Nominal loss</th></tr>
+        <tr><td>Vertical ↔ Horizontal</td><td class="num">25 dB</td></tr>
+        <tr><td>RHC ↔ LHC (opposite circular)</td><td class="num">25 dB</td></tr>
+        <tr><td>Slant ↔ V or H</td><td class="num">25 dB</td></tr>
+        <tr><td>Linear ↔ Circular</td><td class="num">3 dB</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>One-way vs. two-way propagation</h4>
+      <p><strong>One-way link</strong> (datalinks, GPS, jamming) — governed by Friis. Power travels transmitter to receiver once. Received power ∝ 1/R².</p>
+      <div class="math">\[P_r = \frac{P_t\,G_t\,G_r\,\lambda^2}{(4\pi R)^2}\]</div>
+      <p><strong>Two-way link</strong> (radar) — power travels out to the target (1/R²) and the echo travels back (1/R² again). Received power ∝ 1/R⁴.</p>
+      <div class="math">\[P_r = \frac{P_t\,G^2\lambda^2\sigma}{(4\pi)^3 R^4}\]</div>
+      <p>This is why <strong>a jammer has a natural advantage over a radar</strong>: its signal only makes the trip once.</p>
+      <p>The card's Adamy/dB forms are usually faster on a written exam:</p>
+      <div class="math">\[\begin{aligned}
+S_R(\mathrm{dBW}) &= P_T(\mathrm{dBW}) + G_T(\mathrm{dBi}) + G_R(\mathrm{dBi}) - L_S(\mathrm{dB}) - L_{\mathrm{other}}(\mathrm{dB})\\[5pt]
+L_S(\mathrm{dB}) &= 32.4 + 20\log\!\left(\frac{\mathrm{Range}}{\mathrm{km}}\right) + 20\log\!\left(\frac{\mathrm{Freq}}{\mathrm{MHz}}\right)
+\end{aligned}\]</div>
+    </div>
+
+    <div class="concept">
+      <h4>Latency</h4>
+      <p>Latency is the time delay in a communication signal. Beyond-line-of-sight satellite communications carry significant latency because of the distances involved, which makes them <strong>unsuitable for time-critical actions</strong> such as landing a remotely piloted aircraft.</p>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.1</p>
+          <p>A ground station transmits right-hand circular polarization. Determine the nominal polarization loss if the airborne receive antenna is (a) LHC, (b) vertically polarized, (c) RHC.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>(a) RHC → LHC: opposite circular, <span class="val">25 dB loss</span></p>
+          <p>(b) RHC → vertical: circular to linear, <span class="val">3 dB loss</span></p>
+          <p>(c) RHC → RHC: matched, <span class="val">0 dB</span></p>
+          <p>The 3 dB linear/circular case is the one people forget — you lose half the power, but you stay in the link. The 25 dB cases will typically break it.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.2</p>
+          <p>A datalink receiver sees a certain signal level. The aircraft flies out to twice the range. How many dB does the received power drop? Now answer the same question for a radar's target return at twice the range.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+\text{one-way }(P \propto 1/R^2):\quad & 20\log_{10}(2) = \boxed{6\ \mathrm{dB}}\\[5pt]
+\text{two-way }(P \propto 1/R^4):\quad & 40\log_{10}(2) = \boxed{12\ \mathrm{dB}}
+\end{aligned}\]</div>
+          <p>Memorize the pair. Doubling range costs a one-way link 6 dB and a two-way link 12 dB, and that 6 dB difference per doubling is exactly the jammer's structural advantage.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.3</p>
+          <p>A datalink transmits 100 W through a 10 dBi antenna at 1,500 MHz. The receiving antenna has 3 dBi of gain and sits 200 km away. Using the Adamy dB form, what is the received signal power in dBW? Ignore losses beyond spreading.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <div class="math">\[\begin{aligned}
+P_T &= 10\log_{10}(100) = 20\ \mathrm{dBW}\\[5pt]
+L_S &= 32.4 + 20\log(200) + 20\log(1500)\\[3pt]
+    &= 32.4 + 46.0 + 63.5 = \boxed{141.9\ \mathrm{dB}}\\[5pt]
+S_R &= 20 + 10 + 3 - 141.9 = \boxed{-108.9\ \mathrm{dBW}}
+\end{aligned}\]</div>
+          <p>In dBm that's −108.9 + 30 = −78.9 dBm. Watch the units in the spreading loss equation: range in <strong>km</strong>, frequency in <strong>MHz</strong>. Mixing those up is the most common error on this problem type.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.4</p>
+          <p>Explain, in terms of range dependence, why a self-protection jammer's signal arrives at a threat radar stronger than the radar's own target echo — and what happens to that advantage as the jammer closes.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>The jammer's signal makes a <strong>one-way</strong> trip, so it falls off as 1/R². The radar's target return makes a <strong>two-way</strong> trip and falls off as 1/R⁴. At long range the jammer therefore dominates.</p>
+          <p>As the jammer closes, the radar's return strengthens 12 dB per halving of range while the jamming strengthens only 6 dB. <span class="val">The jam-to-signal ratio degrades by 6 dB for every halving of range</span> — eventually the radar burns through.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.5</p>
+          <p>An RPA is controlled over a geostationary satellite link at 35,786 km altitude. Estimate the one-way and round-trip control latency. Would you accept this link for the landing phase?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>One-way path is aircraft \(\to\) satellite \(\to\) ground station:</p><div class="math">\[\begin{aligned}
+d &= 2 \times 35{,}786 = 71{,}572\ \mathrm{km}\\[5pt]
+t &= \frac{d}{c} = \frac{71{,}572}{299{,}792} = \boxed{\approx 0.24\ \mathrm{s}\ \text{one way}}
+\end{aligned}\]</div>
+          <p>Round trip (command up, response back) = <span class="val">≈ 0.48 s</span>, before any processing or encryption delay.</p>
+          <p><span class="val">No.</span> Roughly a half-second of closed-loop delay is unacceptable for landing, where control corrections must be made in real time. Time-critical phases need a line-of-sight link; BLOS SATCOM is for the cruise and transit portions of the mission.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">6.6</p>
+          <p>In problem 6.3, the link is redesigned to operate at 3,000 MHz instead of 1,500 MHz, everything else unchanged. What happens to the spreading loss?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>\(L_S\) contains \(20\log(\mathrm{Freq}/\mathrm{MHz})\), so doubling frequency adds:</p><div class="math">\[20\log_{10}(2) = \boxed{+6\ \mathrm{dB\ of\ loss}}\]</div>
+          <p>New L_S = 141.9 + 6 = 147.9 dB, and S_R drops to −114.9 dBW.</p>
+          <p>Doubling frequency costs 6 dB, the same as doubling range. Both terms are 20 log in the Adamy form.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 7 ===================== -->
+  <section class="mod" id="m7">
+    <p class="modnum">Module 7</p>
+    <h2>Munitions</h2>
+
+    <div class="concept">
+      <h4>Weapon–platform communication lifecycle</h4>
+      <p>A guided munition and its launch platform talk continuously, from power-on to impact. Two phases the deck calls out:</p>
+      <p><strong>Initialization &amp; status check</strong></p>
+      <ul>
+        <li><strong>Built-In Test (BIT):</strong> when the weapon is selected, it checks its own subsystems — guidance computer, control fins, seeker head — and reports <em>BIT Pass</em> or <em>BIT Fail</em>. A pilot cannot proceed with employment on a BIT Fail.</li>
+        <li><strong>Alignment status:</strong> a GPS/INS weapon must align its inertial system to the platform's. It continuously reports <em>Aligned</em>, <em>Aligning</em>, or <em>Degraded</em>. A successful launch requires full alignment.</li>
+      </ul>
+      <p><strong>The pre-launch handshake</strong></p>
+      <ul>
+        <li><strong>Master Arm:</strong> the operator arms the aircraft's master arm switch — the top-level safety gate that allows power to flow for the final release sequence.</li>
+        <li><strong>Data transfer:</strong> the platform sends final refined targeting information — target coordinates, elevation, impact parameters.</li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <h4>Munition markings</h4>
+      <p>Color bands identify type and status to ground crews and aircrew. A weapon can carry multiple bands, each indicating the status of a different component.</p>
+      <div class="tablewrap">
+      <table>
+        <tr><th>Color</th><th>Meaning</th></tr>
+        <tr><td>Yellow</td><td>High explosive — live warhead</td></tr>
+        <tr><td>Brown</td><td>Live rocket motor or low explosive filler — live propulsion</td></tr>
+        <tr><td>Blue</td><td>Inert — training component (warhead or motor)</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">7.1</p>
+          <p>You are observing a loading crew. One missile on the rail carries both a yellow band and a brown band. A second missile is painted entirely blue. Describe each weapon's configuration.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Yellow + brown → <span class="val">live high-explosive warhead and a live rocket motor</span> — a fully live round.</p>
+          <p>All blue → <span class="val">completely inert</span>, a training round with no live warhead and no live motor.</p>
+          <p>The key idea: bands are per-component. A missile can carry a brown band and a blue band at once — live motor, inert warhead — which is a common captive-carry or separation test configuration.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">7.2</p>
+          <p>During a weapons integration test, the crew selects a GPS/INS weapon and the stores management page reports BIT Pass but alignment status "Aligning." Can the crew proceed to launch? What if the report were BIT Fail and "Aligned"?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><strong>BIT Pass / Aligning:</strong> <span class="val">not yet.</span> A successful launch requires full alignment. The weapon's INS has not finished aligning to the platform's, so its navigation solution is not yet valid. Wait for "Aligned."</p>
+          <p><strong>BIT Fail / Aligned:</strong> <span class="val">no.</span> A pilot cannot proceed with employment when the weapon reports a BIT failure, regardless of alignment. BIT covers guidance computer, fins, and seeker — something in that chain is unhealthy.</p>
+          <p>Both gates must be satisfied. Either one alone is disqualifying.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">7.3</p>
+          <p>Put the following in the order they occur in the weapon employment sequence, and identify which one is the top-level safety gate: data transfer of target coordinates, BIT, master arm, alignment.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">1. BIT → 2. Alignment → 3. Master Arm → 4. Data transfer</span></p>
+          <p>BIT and alignment belong to initialization and status checking, which happens on weapon selection. Master arm and data transfer are the pre-launch handshake immediately before release.</p>
+          <p>The top-level safety gate is <span class="val">Master Arm</span> — it is what allows power to flow for the final release sequence.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">7.4</p>
+          <p>What specific information does the platform send the weapon during data transfer, and why does it happen at the end of the sequence rather than at weapon selection?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>The platform sends <span class="val">target coordinates, elevation, and impact parameters</span> — the final, refined targeting information.</p>
+          <p>It happens last because the solution keeps improving right up to release: the platform's own navigation state, sensor updates, and any operator refinement all feed it. Sending the target data at selection would hand the weapon a stale solution and give up everything gained in the intervening seconds.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODULE 8 ===================== -->
+  <section class="mod" id="m8">
+    <p class="modnum">Module 8</p>
+    <h2>Key Supporting Concepts</h2>
+
+    <div class="concept">
+      <h4>System development and evaluation</h4>
+      <ul>
+        <li><strong>SWaP-C</strong> — Size, Weight, Power, and Cost. The fundamental constraints in engineering.</li>
+        <li><strong>Tracking vs. fusion</strong> — tracking uses a <em>single sensor over time</em>; fusion combines data from <em>multiple sensors</em>.</li>
+        <li><strong>Machine learning</strong> — "deep learning" is machine learning that implies artificial neural networks with <em>multiple hidden layers</em>.</li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <h4>Testing and software development</h4>
+      <ul>
+        <li><strong>System-of-systems testing</strong> — testing multiple systems together at scale is challenging because of cost, logistics, and data management.</li>
+        <li><strong>DT campaign</strong> — follows a crawl, walk, run progression.</li>
+      </ul>
+      <div class="eq">1. Subsystem lab tests
+2. Software in a SIL
+3. Hardware-in-the-Loop (HITL)
+4. Ground tests
+5. Flight tests</div>
+      <ul>
+        <li><strong>Software development models</strong> — Waterfall is rigid and predictable; Agile is flexible and iterative. The classic tradeoff is predictability versus responsiveness to change.</li>
+      </ul>
+    </div>
+
+    <div class="probs">
+      <h3>Problems</h3>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.1</p>
+          <p>A contractor proposes moving straight from subsystem lab testing to flight test to save schedule. Name the steps being skipped, in order, and give one reason each matters.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Skipped: <span class="val">software in a SIL → hardware-in-the-loop (HITL) → ground tests</span>.</p>
+          <p><strong>SIL:</strong> exercises the integrated software against simulated inputs, catching interface and logic faults cheaply before any hardware is at risk.</p>
+          <p><strong>HITL:</strong> puts real hardware in the simulated loop, exposing timing, latency, and hardware-software interaction problems that pure software test cannot see.</p>
+          <p><strong>Ground test:</strong> validates the installed system on the actual aircraft — power, cooling, EMI, bus traffic — before anyone flies it.</p>
+          <p>Crawl, walk, run exists to buy down risk in the cheapest environment that can find each class of defect. Skipping steps moves discovery to the most expensive and least safe environment.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.2</p>
+          <p>Distinguish tracking from fusion. A system maintains a target track using returns from a single radar over 30 seconds. Is that tracking or fusion? What if it also incorporates an IR sensor's detections of the same target?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>Single radar over 30 seconds → <span class="val">tracking</span>. One sensor, observed over time.</p>
+          <p>Adding the IR sensor → <span class="val">fusion</span>. Data from multiple sensors is being combined.</p>
+          <p>The distinction on the exam is the number of sensors, not the sophistication of the algorithm. Time is the tracking dimension; multiple sensors is the fusion dimension.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.3</p>
+          <p>A vendor claims their new sensor processor uses "deep learning." What does the word "deep" specifically imply about the architecture?</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>It implies the use of <span class="val">artificial neural networks with multiple hidden layers</span>.</p>
+          <p>Deep learning is a subset of machine learning; "deep" refers to the layer count in the network, not to the quality, accuracy, or sophistication of the result.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.4</p>
+          <p>A program with firm, well-understood requirements and a hard certification milestone is choosing between Waterfall and Agile. Frame the tradeoff and identify what each option costs.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p>The tradeoff is <span class="val">predictability versus responsiveness to change</span>.</p>
+          <p><strong>Waterfall</strong> is rigid and predictable — well suited to firm requirements and a fixed certification gate, but it absorbs late requirement changes poorly and defects surface late.</p>
+          <p><strong>Agile</strong> is flexible and iterative — it handles evolving requirements and delivers testable increments early, but the schedule and final content are harder to commit to up front, which strains a fixed certification milestone.</p>
+          <p>Given firm requirements and a hard milestone, Waterfall's predictability is the better fit; the cost you accept is difficulty absorbing change.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.5</p>
+          <p>Expand SWaP-C, and give an example of how tightening one element forces a tradeoff against another in a sensor pod design.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">Size, Weight, Power, and Cost.</span></p>
+          <p>Example: increasing an EO sensor's aperture improves resolution and sensitivity, but a larger optic drives up <em>size</em> and <em>weight</em>, which drives structural and cooling demands and therefore <em>power</em>, and every one of those drives <em>cost</em>. The pod volume and aircraft payload limits ultimately cap what the optical designer is allowed to ask for.</p>
+        </div></details>
+      </div>
+
+      <div class="prob">
+        <div class="q">
+          <p class="qid">8.6</p>
+          <p>Name the three challenges the deck identifies with testing multiple systems together at scale.</p>
+        </div>
+        <details><summary>Answer</summary><div class="ans">
+          <p><span class="val">Cost, logistics, and data management.</span></p>
+          <p>Cost, because you are paying for many assets simultaneously. Logistics, because you must schedule and position all of them at once. Data management, because instrumenting many systems generates volumes that must be time-aligned and reduced before they mean anything.</p>
+        </div></details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== REFERENCE ===================== -->
+  <section class="mod" id="ref">
+    <p class="modnum">Reference</p>
+    <h2>Constants and acronyms provided</h2>
+
+    <h3>Relationships and constants</h3>
+    <div class="tablewrap">
+    <table>
+      <tr><td>1 nautical mile</td><td class="num">6,076 feet</td></tr>
+      <tr><td>1 inch</td><td class="num">2.54 cm</td></tr>
+      <tr><td>1 knot</td><td class="num">1 nm/hr = 0.5148 m/s = 1.689 ft/s</td></tr>
+      <tr><td>Speed of light</td><td class="num">3 × 10⁸ m/s</td></tr>
+      <tr><td>Planck's constant</td><td class="num">6.625 × 10⁻³⁴ J·s</td></tr>
+      <tr><td>Boltzmann's constant</td><td class="num">1.38 × 10⁻²³ J/K</td></tr>
+      <tr><td>X-band Doppler rule of thumb</td><td class="num">35 Hz per knot</td></tr>
+      <tr><td>1 parsec</td><td class="num">3.0856805 × 10¹⁶ m</td></tr>
+      <tr><td>1 astronomical unit</td><td class="num">92.956 × 10⁶ st mi = 149.594 × 10⁹ m</td></tr>
+    </table>
+    </div>
+
+    <div class="prob" style="margin-top:18px">
+      <div class="q">
+        <p class="qid">R.1</p>
+        <p>Use the X-band Doppler rule of thumb to find the Doppler shift for a head-on target with 400 knots of closure. Then verify it with the equation card's Doppler relation.</p>
+      </div>
+      <details><summary>Answer</summary><div class="ans">
+        <div class="math">\[\text{rule of thumb:}\quad 35\ \tfrac{\mathrm{Hz}}{\mathrm{kt}} \times 400\ \mathrm{kt} = \boxed{14{,}000\ \mathrm{Hz} = 14\ \mathrm{kHz}}\]</div><p>Verify with the card, head-on so \(\cos\theta = 1\):</p><div class="math">\[\begin{aligned}
+V_R &= 400\ \mathrm{kt} \times 0.5148\ \tfrac{\mathrm{m/s}}{\mathrm{kt}} = 205.9\ \mathrm{m/s}\\[5pt]
+f_d &= \frac{2V_R\cos\theta}{\lambda} = \frac{2 \times 205.9}{0.03} = \boxed{13{,}730\ \mathrm{Hz} \approx 13.7\ \mathrm{kHz}}
+\end{aligned}\]</div>
+        <p>The rule of thumb is built around roughly 9.4 GHz, so it runs a couple percent off a clean 10 GHz assumption. Close enough to check your work in your head.</p>
+      </div></details>
+    </div>
+
+    <h3>Glossary</h3>
+    <ul class="twocol">
+      <li><strong>AGL</strong> — Above Ground Level</li>
+      <li><strong>BIT</strong> — Built-In Test</li>
+      <li><strong>dBi</strong> — Decibels relative to isotropic</li>
+      <li><strong>dBsm</strong> — Decibels relative to one square meter</li>
+      <li><strong>DT</strong> — Developmental Test</li>
+      <li><strong>EA</strong> — Electronic Attack</li>
+      <li><strong>EM</strong> — Electromagnetic</li>
+      <li><strong>EO</strong> — Electro-Optic</li>
+      <li><strong>EP</strong> — Electronic Protection</li>
+      <li><strong>ES</strong> — Electronic Support</li>
+      <li><strong>EW</strong> — Electronic Warfare</li>
+      <li><strong>FCR</strong> — Fire Control Radar</li>
+      <li><strong>GPS</strong> — Global Positioning System</li>
+      <li><strong>HITL</strong> — Hardware-in-the-Loop</li>
+      <li><strong>IFOV</strong> — Instantaneous Field of View</li>
+      <li><strong>INS</strong> — Inertial Navigation System</li>
+      <li><strong>IR</strong> — Infrared</li>
+      <li><strong>LWIR</strong> — Long-Wave Infrared</li>
+      <li><strong>RAM</strong> — Radar-Absorbent Material</li>
+      <li><strong>RCS</strong> — Radar Cross Section</li>
+      <li><strong>SAR</strong> — Synthetic Aperture Radar</li>
+      <li><strong>SIL</strong> — System Integration Lab</li>
+      <li><strong>SNR</strong> — Signal-to-Noise Ratio</li>
+      <li><strong>SOJ</strong> — Stand-Off Jammer</li>
+      <li><strong>SWaP-C</strong> — Size, Weight, Power, and Cost</li>
+      <li><strong>UHF</strong> — Ultra-High Frequency</li>
+    </ul>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Scoped to the Mission Systems Written Comp Review deck. Concepts, equations, and definitions follow the deck; problems were written against it and the June 2024 equation card. Unclassified.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function showMath(){
+    document.querySelectorAll('.math').forEach(function(el){ el.classList.add('rendered'); });
+  }
+  function render(){
+    if (typeof renderMathInElement !== 'function'){ showMath(); return; }
+    try{
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left:'\\[', right:'\\]', display:true},
+          {left:'\\(', right:'\\)', display:false}
+        ],
+        throwOnError:false,
+        strict:false
+      });
+    }catch(e){ /* leave source visible rather than blank */ }
+    showMath();
+  }
+  if (document.readyState === 'loading'){
+    window.addEventListener('DOMContentLoaded', render);
+  } else { render(); }
+  // if the CDN never answers, reveal the raw source instead of an empty page
+  window.setTimeout(showMath, 3000);
+})();
+</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('toggleAll');
+  var open = false;
+  btn.addEventListener('click', function(){
+    open = !open;
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
+    btn.textContent = open ? 'Hide all answers' : 'Show all answers';
+  });
+
+  var tbtn = document.getElementById('themeBtn');
+  function current(){
+    var set = document.documentElement.getAttribute('data-theme');
+    if (set) return set;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function paint(){
+    tbtn.textContent = current() === 'dark' ? 'Switch to light' : 'Switch to dark';
+  }
+  tbtn.addEventListener('click', function(){
+    document.documentElement.setAttribute('data-theme', current() === 'dark' ? 'light' : 'dark');
+    paint();
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
